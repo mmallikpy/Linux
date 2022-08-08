@@ -1,0 +1,21 @@
+upstream backend {
+      server 172.16.200.2:8088;
+      server 172.16.200.3:8088;
+      server 172.16.200.3:8081;
+}
+
+   # This server accepts all traffic to port 80 and passes it to the upstream.
+   # Notice that the upstream name and the proxy_pass need to match.
+
+server {
+      listen 80;
+      server_name web5.rawscripter.com;
+      location / {
+          proxy_pass http://backend;
+          proxy_redirect     off;
+          proxy_set_header   Host $host;
+          proxy_set_header   X-Real-IP $remote_addr;
+          proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header   X-Forwarded-Host $server_name;
+      }
+}

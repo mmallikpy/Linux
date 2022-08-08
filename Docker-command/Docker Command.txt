@@ -1,0 +1,50 @@
+yum install -y yum-utils device-mapper-persistent-data lvm2
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum install docker-ce -y
+docker -v
+systemctl enable docke
+systemctl start docker
+
+#Docker Images download
+docker pull centos
+
+# Check the downloaded Images
+docker images
+
+#Run a docker image
+docker run -it -d centos
+
+#Running docker check
+docker ps
+
+#Enter in a running docker
+docker exec -it d85e2eb6ec11 bash
+
+#Stop a running docker image
+docker stop 26f60a855307
+
+#Stop a running docker image
+docker kill d85e2eb6ec11
+
+#Check running Images
+docker ps -a
+
+# Remove running os
+docker rm 26f60a855307
+
+# Remove running os using force
+docker rm -f 26f60a855307
+
+# Check the downloaded Images
+docker images
+
+#Remove a images from the image list
+docker rmi cf0f3ca922e0
+
+#Stop all docker images
+docker rm -f $(sudo docker ps -a -q)
+
+# For port forword
+docker run -it -d -p 82:80 mithun/apache2.rawscripter.com
+
+

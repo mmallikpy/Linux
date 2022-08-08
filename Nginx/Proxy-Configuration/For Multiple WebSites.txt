@@ -1,0 +1,33 @@
+File Path:
+---------------
+/etc/nginx/conf.d
+
+vi proxy.conf 
+
+server {
+        listen 80;
+        server_name web3.rawscripter.com;
+        location / {
+                proxy_pass http://172.16.200.2:8088;
+        }
+}
+
+
+server {
+        listen 80;
+        server_name web4.rawscripter.com;
+        location / {
+                proxy_pass http://172.16.200.3:8088;
+        }
+}
+
+
+server {
+        listen 80;
+        server_name web5.rawscripter.com;
+
+        location / {
+                proxy_pass http://172.16.200.3:8081;       #[ If you have multipale web sites in a same server then you need to set the port number]
+        }
+
+}

@@ -1,0 +1,66 @@
+https://www.unixmen.com/samba-server-installation-and-configuration-in-centos-6-3-rhel-6-3/
+https://www.howtoforge.com/centos-6.4-samba-standalone-server-with-tdbsam-backend
+
+SAMBA
+
+Install Samba package
+----------------------
+rpm -qa | grep samba
+yum list installed | grep samba
+yum remove samba*
+yum install samba* -y
+
+
+Configure a fully accessed anonymous share
+------------------------------------------
+mkdir -p /samba/share1
+chmod -R 0777 /samba/share1/
+cd /etc/samba/
+cp smb.conf smb.conf.bac
+
+vi /etc/samba/smb.conf
+
+
+[Global]
+workgroup = WORKGROUP
+hosts allow = 127. 192.168.1.
+security = share
+map to guest = bad user
+
+#--------For Normal Direcotry Sare------------
+
+[Myshare]
+path = /samba/share1
+browsable =yes
+writable = yes
+guest ok = yes
+read only = no
+
+#--------For Secure Direcotry Sare------------
+
+[Secure]
+        path = /samba/TEST_1
+        valid users = @smbgrp
+        guest ok = no
+        writable = yes
+        browsable = yes
+
+#--------For Home Direcotry Sare------------
+[homes]
+   comment = Home Directories
+   browseable = no
+   valid users = %S
+   writable = yes
+   create mask = 0700
+   directory mask = 0700
+
+#---------------Create Secure Folder----------
+mkdir -p /samba/TEST_1
+chown -R :smbgrp /samba/TEST_1
+
+#---------------For Home directory and secure directory----
+
+groupadd smbgrp
+useradd tom -m -G smbgrp
+passwd tom
+smbpasswd -a tom

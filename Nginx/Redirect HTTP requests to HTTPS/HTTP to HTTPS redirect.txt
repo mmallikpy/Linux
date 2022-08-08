@@ -1,0 +1,9 @@
+server {
+        listen 80;
+        server_name web1.rawscripter.com;
+
+        return 301 https://web1.rawscripter.com$request_uri;     # [This line is for http to https redirect]
+
+        root /var/www/web1.rawscripter.com/html/;
+        index index.html;
+}

@@ -1,0 +1,42 @@
+yum update && upgrade -y
+yum install epel-release
+yum install nginx -y
+cd /etc/nginx/
+
+mkdir -p /var/www/web1.rawscripter.com/html
+mkdir -p /var/www/web2.rawscripter.com/html
+
+chown -R nginx:nginx /var/www/web1.rawscripter.com/html/
+chown -R nginx:nginx /var/www/web2.rawscripter.com/html/
+chown -R 755 /var/www/						[Note: Now copy your webiste in the html direcoty]
+
+
+vi /etc/nginx/nginx.conf
+		include /etc/nginx/conf.d/*.conf;		[Just check this line in configuration file if don't available please add]
+
+cd /etc/nginx/conf.d/
+vi web1.rawscripter.com.conf
+
+server {
+        listen 80;
+        server_name web1.rawscripter.com;
+        root /var/www/web1.rawscripter.com/html/;
+        index index.html;
+
+}
+
+vi web2.rawscripter.com.conf
+
+server {
+        listen 80;
+        server_name web2.rawscripter.com;
+        root /var/www/web2.rawscripter.com/html/;
+        index index.html;
+
+
+nginx -t
+systemctl restart nginx
+systemctl status nginx
+firewall-cmd --add-permanent --add-service=http
+firewall-cmd --permanent --add-service=http
+firewall-cmd --reload

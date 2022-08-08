@@ -1,0 +1,55 @@
+https://university.nginx.com/instructor-led-training/nginx-advanced-load-balancing
+
+
+Summary
+NGINX Advanced Load Balancing is a 4-hour class for system administrators, DevOps, and architects who need a deeper understanding of NGINX load balancing.
+Description
+NGINX Advanced Load Balancing begins with a general review of load balancing as covered in NGINX Core. You'll complete a quick review of load balancer configuration, selection algorithms, migrating from hardware to software load balancers. The follow up activities include: configuring an upstream, session persistence, and enabling extended status / live activity monitoring. You then jump into TCP/UDP load balancing, where you will create an active health check to monitor the health of your backends, as well as how to configure routing and IP sourcing. Next, you explore advanced caching topologies—specifically caching in a "cluster." You'll configure a High Capacity Cache (Sharded Cache) and a Highly Available Cache (Shared Cache) in order to reduce the load on your backend services. Finally, you end the course by leveraging your accumulative knowledge and configuring a Highly Available NGINX node pair with a publicly exposed IP address in order to reduce drop connections in case of node failure or disaster scenarios. The objective of this class enable you to deploy a fault tolerant, highly availably, enterprise scalable, high performing application delivery controller using NGINX+ and its features.
+Duration
+4 hours
+
+Objectives
+Explain how NGINX's load balancing algorithms route requests
+Configure TCP load balancing
+Configure UDP load balancing
+Implement session persistence
+Implement Advanced Caching Tier
+Implement a Highly Available, fault tolerant, NGINX Cluster
+Audience
+NGINX Advanced Load Balancing is intended for system admins, DevOps, and architects who need a deeper understanding of NGINX load balancing.
+
+Prerequisites
+Advanced Load Balancing is for people who have completed NGINX Core or who have commensurate experience. Hands on labs require you to run basic UNIX commands, navigate the file system, and editing configuration files using VIM or the like.
+
+Outline
+Review of Load Balancing
+Review of Basic Load Balancing Configuration
+Algorithms and How They're Evaluated (weighting, etc)
+Hardware Migration Guide for F5
+Hardware Migration Guide for Netscaler
+Lab: Configure HTTP Upstream + Dashboard + Active Health Check
+Session Persistence
+Lab: Configure Session Persistence
+TCP/UDP Load Balancing
+TCP Lab Example
+UDP Lab Example
+Lab: build simple TCP/UDP Upstream
+TCP/UDP Health Checks
+Lab: TCP/UDP Health Check
+Transparent IP
+Advanced Caching
+Review of Caching
+How Caching Works in NGINX
+Performance Benefits of Microcaching
+Lab: Configuring a Microcache + Benchmark testing
+Caching in a Cluster
+Lab: Sharded Cache
+Lab: HA Cache Setup (test in next section)
+High Availability
+NGINX Configuration Management
+Lab: nginx-sync
+On-Premise
+Cloud Solutions
+Lab: Configure Active-Passive keepalived
+Active-Active Setup
+Lab: Final Benchmark Test

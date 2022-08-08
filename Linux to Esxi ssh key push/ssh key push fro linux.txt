@@ -1,0 +1,7 @@
+How to push ssh key linux to esxi.
+
+Linux Part:
+-------------------
+# ssh-keygen
+#cd /root/.ssh/
+#cat id_rsa.pub | ssh root@192.168.2.254 'cat >> /etc/ssh/keys-root/authorized_keys'

@@ -1,0 +1,36 @@
+uname -sr
+Linux 2.6.32-754.3.5.el6.i686
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh https://www.elrepo.org/elrepo-release-6-9.el6.elrepo.noarch.rpm
+
+
+yum --disablerepo="*" --enablerepo="elrepo-kernel" list available
+
+Loading mirror speeds from cached hostfile
+ * elrepo-kernel: hkg.mirror.rackspace.com
+Available Packages
+kernel-lt.i686                                  4.4.208-1.el6.elrepo                      elrepo-kernel
+kernel-lt-NONPAE.i686                           4.4.208-1.el6.elrepo                      elrepo-kernel
+kernel-lt-NONPAE-devel.i686                     4.4.208-1.el6.elrepo                      elrepo-kernel
+kernel-lt-devel.i686                            4.4.208-1.el6.elrepo                      elrepo-kernel
+kernel-lt-doc.noarch                            4.4.208-1.el6.elrepo                      elrepo-kernel
+kernel-lt-headers.i386                          4.4.208-1.el6.elrepo                      elrepo-kernel
+perf.i686                                       4.4.208-1.el6.elrepo                      elrepo-kernel
+python-perf.i686                                4.4.208-1.el6.elrepo                      elrepo-kernel
+
+
+
+yum --enablerepo=elrepo-kernel install kernel-lt
+
+reboot
+
+## Select update kernel when it reboot
+
+vi /boot/grub/grub.conf
+default=0
+
+reboot
+
+
+#rpm -q kernel
+#rpm --erase [kernel list which you don't need]

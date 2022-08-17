@@ -1,0 +1,38 @@
+######## Apachee install and ssl configure in Redhat ########
+1) Package Install
+# dnf install httpd mod_ssl openssl -y
+
+2) If you don't have payed ssl certificate then genarate the certificate
+
+*** Certifiacte create 
+# mkdir /sslCert/
+# cd /sslCert/
+# openssl genrsa -out ca.key 2048
+# openssl req -new -key ca.key -out ca.csr
+# openssl x509 -req -days 1825 -in ca.csr -signkey ca.key -out ca.crt
+# cp ca.key /etc/pki/tls/private/
+# cp ca.crt /etc/pki/tls/certs/
+# cp ca.csr /etc/pki/tls/private/
+
+3) Server configuration. First make a backup configuration file.
+
+# cp /etc/httpd/conf.d/ssl.conf /etc/httpd/conf.d/ssl.conf.backup
+# vi /etc/httpd/conf.d/ssl.conf			[Change only 2 lines]
+
+SSLCertificateFile /etc/pki/tls/certs/ca.crt
+SSLCertificateKeyFile /etc/pki/tls/private/ca.key
+
+4) Configure virtual host for your APP
+cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.backup
+vi /etc/httpd/conf/httpd.conf
+
+ServerName localhost:443
+
+<VirtualHost *:443>
+ SSLEngine on
+ SSLCertificateFile /etc/pki/tls/certs/ca.crt
+ SSLCertificateKeyFile /etc/pki/tls/private/ca.key
+ SSLCACertificateFile /etc/pki/tls/certs/ca.crt
+ ServerName amms-online7.asabd.org:443
+ Documentroot /var/www/html
+</VirtualHost>

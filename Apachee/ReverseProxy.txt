@@ -1,0 +1,18 @@
+# Just go to the last line of httpd.conf file and add bellow mention code. It will make a server ssl secure and mak it # reverse proxy
+
+<VirtualHost *:443>
+ SSLEngine on
+ SSLCertificateFile /etc/pki/tls/certs/ca.crt
+ SSLCertificateKeyFile /etc/pki/tls/private/ca.key
+# SSLCACertificateFile /etc/pki/tls/certs/ca.crt
+ ServerName amms-online7.asabd.org:443
+ Documentroot /var/www/html
+
+# Reverse proxy Local server 172.16.0.2
+ <Location />
+    ProxyPass http://172.17.0.2:5000/
+    ProxyPassReverse http://172.17.0.2:5000/
+  </Location>
+
+</VirtualHost>
+

@@ -1,0 +1,44 @@
+## How to install ssl certificate using certbot in nginx
+*** Prerequisites
+	1. DNS entry
+	2. Websites/Server reachable from internet
+
+# Step-1
+---> Install nginx
+$sudo apt-get update
+$sudo apt-get upgrade
+$sudo apt install nginx
+
+# Step-2
+---> Configure virtual hosting
+$cd /etc/nginx/conf.d/
+$sudo vi rawscripter.com.conf
+
+server {
+        listen 80;
+        server_name rawscripter.com;
+        root /var/www/rawscripter.com/html/;
+        index index.html;
+}
+
+# Step-3
+---> Restart the nginx
+$sudo systemctl restart nginx
+$sudo systemctl status nginx
+
+# Step-4
+---> Check the website using browser from internet. If ok, then try to install ssl using certbot
+
+# Step-5
+---> Install certbot with dependency
+$sudo apt-get install certbot python3-certbot-nginx
+
+$sudo certbot --nginx -d rawscripter.com
+
+** If you have more websites then you can run bellow command
+$sudo certbot --nginx -d rawscripter.com -d blog.rawscripter.com
+
+# Step-6
+---> Automatically Renew Certificates
+$crontab -e 
+0 12 * * * /usr/bin/certbot renew --quiet

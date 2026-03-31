@@ -17,7 +17,7 @@ server {
 }
 
 
-[Note: Load balance with 2 server with proxy using custom port.]
+[Note: Load balance with 3 server with proxy using custom port.]
 
 #cd /etc/nginx/conf.d
 
